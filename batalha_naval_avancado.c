@@ -2,6 +2,8 @@
 #include <ctype.h>
 
 int main (){
+int tentativas = 10;
+int tiros_usados = 0;
 int acertos = 0;
 int total_barcos = 6; // 2 barcos de 3 posições
 int tiros[10][10] = {0};
@@ -92,6 +94,7 @@ while (1) {
 
     printf("\nDigite coordenada (A5) ou S para sair: ");
     scanf(" %c", &coluna_char);
+    tiros_usados++;
 
     // SAIR DO JOGO
     if (toupper(coluna_char) == 'S') {
@@ -118,17 +121,22 @@ while (1) {
 //marcar o tiro
 tiros[linha][coluna] = 1;
     if (mapa[linha][coluna][0] == '3') {
-    printf("💥 Acertou um barco!\n");
+    printf(" Acertou um barco!\n");
     acertos++;
-
-    } else if (mapa[linha][coluna][0] == '5') {
-        printf("Area especial!\n");
+    }else if (mapa[linha][coluna][0] == '5') {
+    printf(" Area especial! Voce ganhou +2 tiros!\n");
+    tentativas += 2;
     } else {
         printf("Agua!\n");
     }
 //sistema de vitoria
     if (acertos == total_barcos) {
-    printf("\n🏆 VOCE VENCEU! Todos os barcos foram destruidos!\n");
+    printf("\n VOCE VENCEU! Todos os barcos foram destruidos!\n");
+    break;
+}
+//sistema de derrota
+if (tiros_usados == tentativas) {
+    printf("\n Fim de jogo! Acabaram suas tentativas.\n");
     break;
 }
 
