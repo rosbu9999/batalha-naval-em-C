@@ -115,7 +115,7 @@ while (1) {
 
     // RESULTADO
     if (tiros[linha][coluna] == 1) {
-    printf("⚠️ Voce ja atirou aqui!\n");
+    printf("Voce ja atirou aqui!\n");
     continue;
 }
 //marcar o tiro
